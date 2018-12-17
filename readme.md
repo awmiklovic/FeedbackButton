@@ -99,17 +99,6 @@ toggleTooltip(){
 
 If you need your form validated, the validation should happen outside of the component and be passed in as a boolean prop.
 
-```
-formValidate(){
-  let newState = {
-    ...this.state,
-    formValidated: (this.state.formInput.length > 0)
-  }
-  this.setState(newState);
-}
-
-```
-
 ### buttonFunction = 'Func'
 
 This is the original action of the button that you are seeking feedback for. This function will fire last.
