@@ -20,7 +20,7 @@ npm install react-feedback-button
   ButtonText="Skip"
   TooltipMessage="Would you like to help us out by providing feedback on why you skipped this?"
   Form={this.form()}
-  submitFunction={this.formSubmit}
+  submitFunction={this.submitFunction}
   disableTooltip = {this.toggleTooltip}
   formValidated = {this.state.formValidated}
   buttonFunction = {this.buttonFunction}
@@ -66,7 +66,7 @@ form(){
 This function will be fired after the form's 'Submit' button has been clicked. To allow total control of how the feedback data is handled, this should be set up outside of the component and tailored to your specific needs.
 
 ```
-formSubmit(){
+submitFunction(){
   axios.post('/feedback', {
       user: 'this.state.user',
       job: 'this.state.currentJobID',
@@ -97,12 +97,17 @@ toggleTooltip(){
 
 ### formValidated = 'Boolean'
 
-If you need your form validated, the validation should happen outside of the component, and passed in as a boolean prop.
+If you need your form validated, the validation should happen outside of the component and be passed in as a boolean prop.
 
 ```
-formValidate(formField, value){
-  return(this.state.formField.length > 0)
+formValidate(){
+  let newState = {
+    ...this.state,
+    formValidated: (this.state.formInput.length > 0)
+  }
+  this.setState(newState);
 }
+
 ```
 
 ### buttonFunction = 'Func'
