@@ -108,3 +108,7 @@ buttonFunction(){
   /* Do something... */
 }
 ```
+
+## Example
+
+To see a full example codebase of the button in use, head over to: https://github.com/awmiklovic/React-Feedback-Button-Demo
