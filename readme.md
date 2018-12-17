@@ -16,14 +16,14 @@ npm install react-feedback-button
 
 ```
 <FeedbackButton
-  tooltipOn = {this.state.tooltipPermission}
+  tooltipOn = {this.state.tooltipOn}
   ButtonText="Skip"
   TooltipMessage="Would you like to help us out by providing feedback on why you skipped this?"
   Form={this.form()}
   submitFunction={this.formSubmit}
-  disableTooltip = {this.toggleTooltipPermission}
+  disableTooltip = {this.toggleTooltip}
   formValidated = {this.state.formValidated}
-  buttonFunction = {this.originalFunction}
+  buttonFunction = {this.buttonFunction}
 />
 ```
 ### tooltipOn = 'Boolean'
@@ -86,10 +86,10 @@ formSubmit(){
 To allow the opt-out link to work, it needs to be able to toggle the tooltipOn property in the global store. This should be set up as a function outside of the component and passed in as a property.
 
 ```
-toggleTooltipPermission(){
+toggleTooltip(){
   let newState = {
     ...this.state,
-    tooltipPermission: !this.state.tooltipPermission
+    tooltipOn: !this.state.tooltipOn
   }
   this.setState(newState);
 }
@@ -110,7 +110,7 @@ formValidate(formField, value){
 This is the original action of the button that you are seeking feedback for. This function will fire last.
 
 ```
-originalAction(){
+buttonFunction(){
   /* Do something... */
 }
 ```
