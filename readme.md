@@ -2,28 +2,28 @@ Check out the demo at: https://upbeat-booth-61589f.netlify.com/
 
 ## React Feedback Button
 
-Inspired by teams that need to aggregate feedback on how users interact with their products, the React Feedback Button allows users to opt into providing feedback when they perform a specific task by displaying a tooltip with a feedback form.
+Inspired by teams that need to aggregate feedback on how users interact with their products, the React Feedback Button allows users to opt-in to providing feedback when they perform a specific task by displaying a tooltip with a feedback form.
 
-By keeping the feedback form in a tooltip close to the original interaction, rather than a large modal overlay, the users are not forced to abandon their existing contextual information to assess why they've been presented with a large pop up modal. It also keeps the subsequent user interactions and the option to disable the feedback forms in a tight grouping near the original interaction.
+By keeping the feedback form in a tooltip close to the original interaction, rather than a large modal overlay, the users are not forced to abandon their existing contextual information to assess why they've been presented with a large pop up modal. The React Feedback Button also keeps the subsequent user interactions (and the option to disable the feedback forms) in a tight grouping near the original interaction which provides a more intuitive user experience without disrupting the user's contextual map.
 
 ## Install
 
 ```
-npm install react-feedback-Button
+npm install react-feedback-button
 ```
 
 ## Props
 
 ```
 <FeedbackButton
+  tooltipOn = {this.state.tooltipPermission}
   ButtonText="Skip"
   TooltipMessage="Would you like to help us out by providing feedback on why you skipped this?"
   Form={this.form()}
   submitFunction={this.formSubmit}
-  tooltipOn = {this.props.tooltipPermission}
-  disableTooltip = {this.props.toggleTooltipPermission}
+  disableTooltip = {this.toggleTooltipPermission}
   formValidated = {this.state.formValidated}
-  buttonFunction = {this.props.skipFunction}
+  buttonFunction = {this.originalFunction}
 />
 ```
 ### tooltipOn = 'Boolean'
@@ -95,18 +95,13 @@ toggleTooltipPermission(){
 }
 ```
 
-### formValidated = 'Func'
+### formValidated = 'Boolean'
 
-If you need your form validated, this should be passed in as a function that returns true or false. This will enable/disable the 'Submit' button on the tooltip form. This property returns true by default and can be left blank.
+If you need your form validated, the validation should happen outside of the component, and passed in as a boolean prop.
 
 ```
-formValidate(name, value){
-  let memState = {
-    ...this.state,
-    [name]: value
-  }
-  console.log(memState);
-  return(memState.reason.length > 0)
+formValidate(formField, value){
+  return(this.state.formField.length > 0)
 }
 ```
 
